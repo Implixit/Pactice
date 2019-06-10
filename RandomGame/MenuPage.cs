@@ -13,7 +13,7 @@ namespace RandomGame
 {
     public partial class MenuPage : Form
     {
-        public Player CurrentPlay { get; set; } /
+        public Player CurrentPlay { get; set; } //
         public MenuPage()
         {
             InitializeComponent();
