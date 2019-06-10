@@ -68,6 +68,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -137,6 +138,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Map";
             this.Text = "Map";
+            this.Load += new System.EventHandler(this.Map_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

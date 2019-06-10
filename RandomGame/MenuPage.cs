@@ -28,7 +28,7 @@ namespace RandomGame
             else
             {
                 // player information
-                Player CurrentPlay = new Player()
+                Player NewPlayer = new Player()
                 {
                     Name = textBox1.Text,
                     AttackPoint = 100,
@@ -38,10 +38,10 @@ namespace RandomGame
                 //start a new page
                 Map start = new Map();
                 //send player information to other 
-                start.CurrentPlay = CurrentPlay;
+                start.CurrentPlay = NewPlayer;
                 this.Hide();// 
                 start.ShowDialog(); // 
-                this.Close();/
+                this.Close();//
             }
            
         }
