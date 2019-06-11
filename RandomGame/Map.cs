@@ -13,10 +13,10 @@ namespace RandomGame
 {
     public partial class Map : Form
     {
-        public Player CurrentPlay { get; set; } 
+        public Player CurrentPlay { get; set; }
         public Map()
-        {      
-            InitializeComponent();           
+        {
+            InitializeComponent();
         }
         private void Map_Load(object sender, EventArgs e)
         {
@@ -28,31 +28,52 @@ namespace RandomGame
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             Random random = new Random();
+            //enemy attack player
             Battle Calucation = new Battle()
             {
                 Name = "Name" + random.Next(0, 10),
-                AttackPoint = random.Next(1, 80),
+                AttackPoint = random.Next(1, 20),
                 DefensePoint = random.Next(1, 20),
                 HP = random.Next(20, 100)
             };
-            var result = BattleCalculation(Calucation);
+            //Side = true  mean enemy attack player
+            var result = BattleCalculation(Calucation, CurrentPlay, true);
 
             MessageBox.Show("You get " + result.Key + " Damage");
             CurrentPlay.HP = result.Value;
             HPpoint.Text = CurrentPlay.HP.ToString();
+            // player attack enemy
+            result = BattleCalculation(Calucation, CurrentPlay, false);
+            MessageBox.Show("You deal " + result.Key + " Damage");
+
+
         }
-        private KeyValuePair<int,int> BattleCalculation(Battle battle)
+        private KeyValuePair<int, int> BattleCalculation(Battle battle, Player player, bool Side)
+        // true = enemy attack player   false = player -> enemy
         {
             int hp;
             int damage;
-            damage = battle.AttackPoint - CurrentPlay.DefensePoint;
-            hp = CurrentPlay.HP - damage;
+            if (Side)//side == true
+            {
+                //enemy attack player
+                damage = battle.AttackPoint - player.DefensePoint;
+                hp = player.HP - damage;
+            }
+            else
+            {
+                //plyaer attack enemy
+                damage = player.AttackPoint - battle.DefensePoint;
+                hp = battle.HP = damage;
+            }
             //key is damage, value is hp
-            return new KeyValuePair<int, int>(damage,hp);
+            return new KeyValuePair<int, int>(damage, hp);
+
+
+
         }
 
-        
+
     }
 }
