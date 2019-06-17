@@ -32,7 +32,7 @@ namespace RandomGame
                 {
                     Name = textBox1.Text,
                     AttackPoint = 100,
-                    DefensePoint = 100,
+                    DefensePoint = 5,
                     HP = 100
                 };
                 //start a new page
