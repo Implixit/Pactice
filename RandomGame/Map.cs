@@ -49,6 +49,8 @@ namespace RandomGame
                 };
                 CurrentEnemy = Calucation;
                 Enemyhp = BattleFunction();
+
+                
             }
             if (Enemyhp <= 0)
             {
@@ -63,7 +65,7 @@ namespace RandomGame
                         txt.Text = "";
                     }
                 }
-               
+                enemyAlive = false;
             }
             else
             {
