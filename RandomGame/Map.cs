@@ -32,23 +32,24 @@ namespace RandomGame
         {
             int Enemyhp;
 
+
             Random random = new Random();
             if (enemyAlive == true)
             {
-                Enemyhp = BattleFunction(CurrentEnemy,CurrentPlay);
+                Enemyhp = BattleFunction(CurrentEnemy, CurrentPlay);
             }
             else
             {
-                
+
                 //create a new enemy
                 Battle Calucation = new Battle()
                 {
-                    Level = random.Next(CurrentPlay.Level,CurrentPlay.Level+5),
+                    Level = random.Next(CurrentPlay.Level, CurrentPlay.Level + 5),
                     Name = "Name " + random.Next(1, 10),
                     AttackPoint = random.Next(1, 20),
                     DefensePoint = random.Next(1, 10),
                     HP = random.Next(20, 25),
-                    
+
                 };
                 CurrentEnemy = Calucation;
                 Enemyhp = BattleFunction(CurrentEnemy, CurrentPlay);
@@ -67,16 +68,28 @@ namespace RandomGame
                     }
                 }
                 ExpCalucation(CurrentEnemy, CurrentPlay);
+                enemyAlive = false;    
             }
             else
             {
                 MessageBox.Show("Enemy still have HP!");
-                
+
                 // enemy still have HP
                 enemyAlive = true;
             }
+            //Player lost of their Hp
+            if (CurrentPlay.HP <= 0)
+            {
+                MessageBox.Show("Your Hp is 0. \n You LOST!");
+
+                MenuPage MainPage = new MenuPage();
+                this.Hide();
+                MainPage.ShowDialog();
+                this.Close();
+            }
             
-            
+
+
 
         }
         private KeyValuePair<int, int> BattleCalculation(Battle battle, Player player, bool Side)
@@ -143,7 +156,6 @@ namespace RandomGame
         }
         private void ExpCalucation( Battle battle,Player player)
         {
-            //True -> Level up  
 
             //Add exp to player
             player.CurrentExp += battle.Exp;
