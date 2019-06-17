@@ -135,6 +135,7 @@ namespace RandomGame
             battle.HP = result.Value;
             enemyHP.Text = battle.HP.ToString();
 
+            //renew information for both enemy and player
             CurrentEnemy = battle;
             CurrentPlay = player;
             //return enemy HP
@@ -146,6 +147,7 @@ namespace RandomGame
 
             //Add exp to player
             player.CurrentExp += battle.Exp;
+            MessageBox.Show("You get: " + battle.Exp + " Exp");
             // Current Exp is meet exp needed than Level Up and set current exp to 0
             if (player.CurrentExp >= player.ExpNeeded)
             {
