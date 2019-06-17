@@ -68,7 +68,8 @@ namespace RandomGame
                     }
                 }
                 ExpCalucation(CurrentEnemy, CurrentPlay);
-                enemyAlive = false;    
+                enemyAlive = false;
+                NewEnemy();
             }
             else
             {
@@ -92,6 +93,7 @@ namespace RandomGame
 
 
         }
+        #region Battle Calculation
         private KeyValuePair<int, int> BattleCalculation(Battle battle, Player player, bool Side)
         // true = enemy attack player   false = player -> enemy
         {
@@ -126,6 +128,8 @@ namespace RandomGame
             //key is damage, value is hp
             return new KeyValuePair<int, int>(damage, hp);
         }
+        #endregion
+        #region Battle Result
         private int BattleFunction(Battle battle,Player player)
         {
             // Show information about enemy 
@@ -154,6 +158,8 @@ namespace RandomGame
             //return enemy HP
             return battle.HP;
         }
+        #endregion
+        #region Exp Calucation
         private void ExpCalucation( Battle battle,Player player)
         {
 
@@ -169,6 +175,25 @@ namespace RandomGame
             }
             CurrentPlay.CurrentExp = player.CurrentExp;
         }
-
+        #endregion
+        private void NewEnemy()
+        {
+            foreach (Control item in groupBox1.Controls)
+            {
+                groupBox1.Controls.Remove(item);
+            }
+            Random randomLocation = new Random();
+            int x1;
+            int y1;
+            x1 = randomLocation.Next(groupBox1.Width);
+            y1 = randomLocation.Next(groupBox1.Height);
+            Button BT = new Button()
+            {
+                Location = new Point(x1, y1),
+                Text = "Your enemy"                
+            };
+            BT.Click += button1_Click;
+            groupBox1.Controls.Add(BT);
+        }
     }
 }
