@@ -46,6 +46,8 @@
             this.enemyAttack = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.enemyDefense = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.enemyLevel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +56,7 @@
             // 
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(205, 29);
+            this.groupBox1.Location = new System.Drawing.Point(115, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(358, 240);
             this.groupBox1.TabIndex = 0;
@@ -173,7 +175,7 @@
             // enemyName
             // 
             this.enemyName.AutoSize = true;
-            this.enemyName.Location = new System.Drawing.Point(0, 0);
+            this.enemyName.Location = new System.Drawing.Point(38, 0);
             this.enemyName.Name = "enemyName";
             this.enemyName.Size = new System.Drawing.Size(10, 13);
             this.enemyName.TabIndex = 4;
@@ -182,7 +184,7 @@
             // enemyHP
             // 
             this.enemyHP.AutoSize = true;
-            this.enemyHP.Location = new System.Drawing.Point(44, 0);
+            this.enemyHP.Location = new System.Drawing.Point(82, 0);
             this.enemyHP.Name = "enemyHP";
             this.enemyHP.Size = new System.Drawing.Size(10, 13);
             this.enemyHP.TabIndex = 5;
@@ -191,7 +193,7 @@
             // enemyAttack
             // 
             this.enemyAttack.AutoSize = true;
-            this.enemyAttack.Location = new System.Drawing.Point(86, 0);
+            this.enemyAttack.Location = new System.Drawing.Point(124, 0);
             this.enemyAttack.Name = "enemyAttack";
             this.enemyAttack.Size = new System.Drawing.Size(10, 13);
             this.enemyAttack.TabIndex = 6;
@@ -199,29 +201,49 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.enemyLevel);
             this.panel1.Controls.Add(this.enemyDefense);
             this.panel1.Controls.Add(this.enemyAttack);
             this.panel1.Controls.Add(this.enemyHP);
             this.panel1.Controls.Add(this.enemyName);
-            this.panel1.Location = new System.Drawing.Point(569, 72);
+            this.panel1.Location = new System.Drawing.Point(531, 72);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(219, 107);
+            this.panel1.Size = new System.Drawing.Size(257, 107);
             this.panel1.TabIndex = 8;
             // 
             // enemyDefense
             // 
             this.enemyDefense.AutoSize = true;
-            this.enemyDefense.Location = new System.Drawing.Point(136, 0);
+            this.enemyDefense.Location = new System.Drawing.Point(174, 0);
             this.enemyDefense.Name = "enemyDefense";
             this.enemyDefense.Size = new System.Drawing.Size(10, 13);
             this.enemyDefense.TabIndex = 7;
             this.enemyDefense.Text = " ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(528, 56);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(33, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Level";
+            // 
+            // enemyLevel
+            // 
+            this.enemyLevel.AutoSize = true;
+            this.enemyLevel.Location = new System.Drawing.Point(3, 0);
+            this.enemyLevel.Name = "enemyLevel";
+            this.enemyLevel.Size = new System.Drawing.Size(10, 13);
+            this.enemyLevel.TabIndex = 8;
+            this.enemyLevel.Text = " ";
             // 
             // Map
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.DefensePoint);
             this.Controls.Add(this.label4);
@@ -265,5 +287,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label enemyDefense;
         private System.Windows.Forms.Label enemyName;
+        private System.Windows.Forms.Label enemyLevel;
+        private System.Windows.Forms.Label label8;
     }
 }

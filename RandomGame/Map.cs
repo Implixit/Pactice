@@ -35,20 +35,23 @@ namespace RandomGame
             Random random = new Random();
             if (enemyAlive == true)
             {
-                Enemyhp = BattleFunction();
+                Enemyhp = BattleFunction(CurrentEnemy,CurrentPlay);
             }
             else
             {
+                
                 //create a new enemy
                 Battle Calucation = new Battle()
                 {
-                    Name = "Name " + random.Next(0, 10),
+                    Level = random.Next(CurrentPlay.Level,CurrentPlay.Level+5),
+                    Name = "Name " + random.Next(1, 10),
                     AttackPoint = random.Next(1, 20),
-                    DefensePoint = random.Next(1, 20),
-                    HP = random.Next(20, 25)
+                    DefensePoint = random.Next(1, 10),
+                    HP = random.Next(20, 25),
+                    
                 };
                 CurrentEnemy = Calucation;
-                Enemyhp = BattleFunction();
+                Enemyhp = BattleFunction(CurrentEnemy, CurrentPlay);
             }
             if (Enemyhp <= 0)
             {
@@ -63,11 +66,12 @@ namespace RandomGame
                         txt.Text = "";
                     }
                 }
-               
+                ExpCalucation(CurrentEnemy, CurrentPlay);
             }
             else
             {
                 MessageBox.Show("Enemy still have HP!");
+                
                 // enemy still have HP
                 enemyAlive = true;
             }
@@ -109,28 +113,47 @@ namespace RandomGame
             //key is damage, value is hp
             return new KeyValuePair<int, int>(damage, hp);
         }
-        private int BattleFunction()
+        private int BattleFunction(Battle battle,Player player)
         {
             // Show information about enemy 
-            enemyName.Text = CurrentEnemy.Name;
-            enemyAttack.Text = CurrentEnemy.AttackPoint.ToString();
-            enemyDefense.Text = CurrentEnemy.DefensePoint.ToString();
-            enemyHP.Text = CurrentEnemy.HP.ToString();
+            enemyLevel.Text = battle.Level.ToString();
+            enemyName.Text = battle.Name;
+            enemyAttack.Text = battle.AttackPoint.ToString();
+            enemyDefense.Text = battle.DefensePoint.ToString();
+            enemyHP.Text = battle.HP.ToString();
 
             //Side = true  mean enemy attack player
-            var result = BattleCalculation(CurrentEnemy, CurrentPlay, true);
+            var result = BattleCalculation(battle, player, true);
 
             MessageBox.Show("You get " + result.Key + " Damage");
-            CurrentPlay.HP = result.Value;
-            HPpoint.Text = CurrentPlay.HP.ToString();
+            player.HP = result.Value;
+            HPpoint.Text = player.HP.ToString();
 
             // player attack enemy
-            result = BattleCalculation(CurrentEnemy, CurrentPlay, false);
+            result = BattleCalculation(battle, player, false);
             MessageBox.Show("You deal " + result.Key + " Damage");
-            CurrentEnemy.HP = result.Value;
-            enemyHP.Text = CurrentEnemy.HP.ToString();
+            battle.HP = result.Value;
+            enemyHP.Text = battle.HP.ToString();
+
+            CurrentEnemy = battle;
+            CurrentPlay = player;
             //return enemy HP
-            return CurrentEnemy.HP;
+            return battle.HP;
+        }
+        private void ExpCalucation( Battle battle,Player player)
+        {
+            //True -> Level up  
+
+            //Add exp to player
+            player.CurrentExp += battle.Exp;
+            // Current Exp is meet exp needed than Level Up and set current exp to 0
+            if (player.CurrentExp >= player.ExpNeeded)
+            {
+                player.Level += 1;
+                player.CurrentExp = 0;
+                MessageBox.Show("Level UP!\n Level :" + player.Level);
+            }
+            CurrentPlay.CurrentExp = player.CurrentExp;
         }
 
     }

@@ -12,5 +12,17 @@ namespace RandomGame.Model
         public int HP { get; set; }
         public int AttackPoint { get; set; }
         public int DefensePoint { get; set; }
+        public int CurrentExp { get; set; }
+        public int Level { get; set; }
+        public int ExpNeeded
+        {
+            get
+            {
+                return Level * 10;
+            }
+
+            
+
+        }
     }
 }

@@ -33,8 +33,12 @@ namespace RandomGame
                     Name = textBox1.Text,
                     AttackPoint = 15,
                     DefensePoint = 5,
-                    HP = 100
+                    HP = 100,
+                    CurrentExp = 0,
+                    Level = 1,
+                    
                 };
+                
                 //start a new page
                 Map start = new Map();
                 //send player information to other 
