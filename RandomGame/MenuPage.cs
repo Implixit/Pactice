@@ -31,7 +31,7 @@ namespace RandomGame
                 Player NewPlayer = new Player()
                 {
                     Name = textBox1.Text,
-                    AttackPoint = 100,
+                    AttackPoint = 15,
                     DefensePoint = 5,
                     HP = 100
                 };

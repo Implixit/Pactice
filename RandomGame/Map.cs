@@ -45,7 +45,7 @@ namespace RandomGame
                     Name = "Name " + random.Next(0, 10),
                     AttackPoint = random.Next(1, 20),
                     DefensePoint = random.Next(1, 20),
-                    HP = random.Next(20, 100)
+                    HP = random.Next(20, 25)
                 };
                 CurrentEnemy = Calucation;
                 Enemyhp = BattleFunction();
@@ -68,6 +68,8 @@ namespace RandomGame
             else
             {
                 MessageBox.Show("Enemy still have HP!");
+                // enemy still have HP
+                enemyAlive = true;
             }
             
             
