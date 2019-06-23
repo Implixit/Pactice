@@ -15,7 +15,8 @@ namespace RandomGame
     {
         public Player CurrentPlay { get; set; }
         public Battle CurrentEnemy { get; set; }
-        bool enemyAlive { get; set; }
+        public bool enemyAlive { get; set; }
+        int Enemyhp;
 
 
         public BattlePage()
@@ -36,56 +37,45 @@ namespace RandomGame
             enemyHP.Text = CurrentEnemy.HP.ToString();
             enemyAttack.Text = CurrentEnemy.AttackPoint.ToString();
             enemyDefense.Text = CurrentEnemy.DefensePoint.ToString();
+
+
+            Enemyhp = CurrentEnemy.HP;
+
         }
-       
+
 
         private void BattlePage_Shown(object sender, EventArgs e)
         {
-            int Enemyhp = CurrentEnemy.HP;
-            if (Enemyhp <= 0)
+
+
+            Enemyhp = BattleFunction(CurrentEnemy, CurrentPlay);
+            if (Enemyhp <= 0 )
             {
-                MessageBox.Show("Enemy Die!");
-                //check control in the panel
-                // Clear enemy infomration
-                foreach (Control txt in panel1.Controls.Cast<Control>())
-                {
-                    //control that is label + design name have enemy  in panel1 will clear
-                    if (txt is Label && txt.Name.Contains("enemy"))
-                    {
-                        txt.Text = "";
-                    }
-                }
+                MessageBox.Show("Enemy die");
                 ExpCalucation(CurrentEnemy, CurrentPlay);
                 enemyAlive = false;
-                BackToMap();
+
             }
             else
             {
-                MessageBox.Show("Enemy still have HP!");
-
-                // enemy still have HP
                 enemyAlive = true;
-                BackToMap();
-            }
+                MessageBox.Show("Enemy still have HP!");
+            }            
+            // enemy still have HP            
+            CurrentEnemy.HP = Enemyhp;           
+            BackToMap();
 
-            //Player lost of their Hp
-            if (CurrentPlay.HP <= 0)
-            {
-                MessageBox.Show("Your Hp is 0. \n You LOST!");
-
-                MenuPage MainPage = new MenuPage();
-                this.Hide();
-                MainPage.ShowDialog();
-                this.Close();
-            }
         }
+        
 
         #region Return to the MAP
         private void BackToMap()
         {
+            
             Map MapPage = new Map();
             MapPage.CurrentPlay = CurrentPlay;
             MapPage.CurrentEnemy = CurrentEnemy;
+            MapPage.enemyAlive = enemyAlive;
             this.Hide();
             MapPage.ShowDialog();
             this.Close();
@@ -177,3 +167,4 @@ namespace RandomGame
         #endregion
     }
 }
+

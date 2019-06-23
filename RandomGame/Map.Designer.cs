@@ -44,9 +44,9 @@
             this.enemyHP = new System.Windows.Forms.Label();
             this.enemyAttack = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.enemyLevel = new System.Windows.Forms.Label();
             this.enemyDefense = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.enemyLevel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -200,6 +200,15 @@
             this.panel1.Size = new System.Drawing.Size(257, 107);
             this.panel1.TabIndex = 8;
             // 
+            // enemyLevel
+            // 
+            this.enemyLevel.AutoSize = true;
+            this.enemyLevel.Location = new System.Drawing.Point(3, 0);
+            this.enemyLevel.Name = "enemyLevel";
+            this.enemyLevel.Size = new System.Drawing.Size(10, 13);
+            this.enemyLevel.TabIndex = 8;
+            this.enemyLevel.Text = " ";
+            // 
             // enemyDefense
             // 
             this.enemyDefense.AutoSize = true;
@@ -217,15 +226,6 @@
             this.label8.Size = new System.Drawing.Size(33, 13);
             this.label8.TabIndex = 9;
             this.label8.Text = "Level";
-            // 
-            // enemyLevel
-            // 
-            this.enemyLevel.AutoSize = true;
-            this.enemyLevel.Location = new System.Drawing.Point(3, 0);
-            this.enemyLevel.Name = "enemyLevel";
-            this.enemyLevel.Size = new System.Drawing.Size(10, 13);
-            this.enemyLevel.TabIndex = 8;
-            this.enemyLevel.Text = " ";
             // 
             // Map
             // 
@@ -248,6 +248,7 @@
             this.Name = "Map";
             this.Text = "Map";
             this.Load += new System.EventHandler(this.Map_Load);
+            this.Shown += new System.EventHandler(this.Map_Shown);
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

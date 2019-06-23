@@ -15,7 +15,7 @@ namespace RandomGame
     {
         public Player CurrentPlay { get; set; }
         public Battle CurrentEnemy { get; set; }
-        bool enemyAlive { get; set; }
+        public bool enemyAlive { get; set; }
         public Map()
         {
             InitializeComponent();
@@ -26,7 +26,23 @@ namespace RandomGame
             HPpoint.Text = CurrentPlay.HP.ToString();
             AttackPoint.Text = CurrentPlay.AttackPoint.ToString();
             DefensePoint.Text = CurrentPlay.DefensePoint.ToString();
+            NewEnemy();
+
+            if (CurrentEnemy ==null)
+            {
+                CurrentEnemy = new Battle()
+                {
+                    HP = 1,
+                    AttackPoint = 1,
+                    DefensePoint = 1,
+                    Level = 1,
+                    Name = "test"
+                };
+            }
+
             
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -54,19 +70,19 @@ namespace RandomGame
                 readyForBattle();
                
             }
-            
-            //Player lost of their Hp
-            if (CurrentPlay.HP <= 0)
-            {
-                MessageBox.Show("Your Hp is 0. \n You LOST!");
 
-                MenuPage MainPage = new MenuPage();
-                this.Hide();
-                MainPage.ShowDialog();
-                this.Close();
-            }
 
-            
+            ////check control in the panel
+            //// Clear enemy infomration
+            //foreach (Control txt in panel1.Controls.Cast<Control>())
+            //{
+            //    //control that is label + design name have enemy  in panel1 will clear
+            //    if (txt is Label && txt.Name.Contains("enemy"))
+            //    {
+            //        txt.Text = "";
+            //    }
+            //}
+
 
 
         }
@@ -101,5 +117,23 @@ namespace RandomGame
             groupBox1.Controls.Add(BT);
         }
         #endregion
+
+
+        private void Map_Shown(object sender, EventArgs e)
+        {
+            //Player lost of their Hp
+            if (CurrentPlay.HP <= 0)
+            {
+                MessageBox.Show("Your Hp is 0. \n You LOST!");
+
+                MenuPage MainPage = new MenuPage();
+                this.Hide();
+                MainPage.ShowDialog();
+                this.Close();
+            }
+            
+        }
+
+
     }
 }
