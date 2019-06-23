@@ -106,13 +106,15 @@ namespace RandomGame
             Random randomLocation = new Random();
             int x1;
             int y1;
-            x1 = randomLocation.Next(groupBox1.Width);
-            y1 = randomLocation.Next(groupBox1.Height);
+            
             Button BT = new Button()
             {
-                Location = new Point(x1, y1),
-                Text = "Your enemy"                
+                Text = "Your enemy"
+               
             };
+            x1 = randomLocation.Next(groupBox1.Size.Width-BT.Width);
+            y1 = randomLocation.Next(groupBox1.Size.Height-BT.Height);
+            BT.Location = new Point(x1, y1);
             BT.Click += button1_Click;
             groupBox1.Controls.Add(BT);
         }
