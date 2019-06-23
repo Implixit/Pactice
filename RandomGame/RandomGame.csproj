@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattlePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BattlePage.Designer.cs">
+      <DependentUpon>BattlePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Map.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +68,9 @@
     <Compile Include="Model\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BattlePage.resx">
+      <DependentUpon>BattlePage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Map.resx">
       <DependentUpon>Map.cs</DependentUpon>
     </EmbeddedResource>

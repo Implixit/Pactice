@@ -30,11 +30,7 @@ namespace RandomGame
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-           
-            
-
-
+        {                  
             Random random = new Random();
             if (enemyAlive == true)
             {
@@ -54,8 +50,9 @@ namespace RandomGame
 
                 };
                 CurrentEnemy = Calucation;
-                readyForBattle();
                 NewEnemy();
+                readyForBattle();
+               
             }
             
             //Player lost of their Hp

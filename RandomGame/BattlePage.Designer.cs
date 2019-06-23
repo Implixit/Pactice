@@ -246,6 +246,7 @@
             this.Name = "BattlePage";
             this.Text = "BattlePage";
             this.Load += new System.EventHandler(this.BattlePage_Load);
+            this.Shown += new System.EventHandler(this.BattlePage_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
