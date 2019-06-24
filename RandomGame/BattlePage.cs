@@ -16,6 +16,10 @@ namespace RandomGame
         public Player CurrentPlay { get; set; }
         public Battle CurrentEnemy { get; set; }
         public bool enemyAlive { get; set; }
+
+        //store location for enemy 
+        public int PastLocationX { get; set; }
+        public int PastLocationY { get; set; }
         int Enemyhp;
 
 
@@ -76,6 +80,8 @@ namespace RandomGame
             MapPage.CurrentPlay = CurrentPlay;
             MapPage.CurrentEnemy = CurrentEnemy;
             MapPage.enemyAlive = enemyAlive;
+            MapPage.PastLocationX = PastLocationX;
+            MapPage.PastLocationY = PastLocationY;
             this.Hide();
             MapPage.ShowDialog();
             this.Close();

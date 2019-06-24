@@ -16,6 +16,10 @@ namespace RandomGame
         public Player CurrentPlay { get; set; }
         public Battle CurrentEnemy { get; set; }
         public bool enemyAlive { get; set; }
+
+        //Store enemy location 
+        public int PastLocationX { get; set; }
+        public int PastLocationY { get; set; }
         public Map()
         {
             InitializeComponent();
@@ -26,7 +30,7 @@ namespace RandomGame
             HPpoint.Text = CurrentPlay.HP.ToString();
             AttackPoint.Text = CurrentPlay.AttackPoint.ToString();
             DefensePoint.Text = CurrentPlay.DefensePoint.ToString();
-            NewEnemy();
+            EnemyAppear();
 
             if (CurrentEnemy ==null)
             {
@@ -66,7 +70,7 @@ namespace RandomGame
 
                 };
                 CurrentEnemy = Calucation;
-                NewEnemy();
+                
                 readyForBattle();
                
             }
@@ -92,12 +96,14 @@ namespace RandomGame
             BattlePage battlePage = new BattlePage();
             battlePage.CurrentPlay = CurrentPlay;
             battlePage.CurrentEnemy = CurrentEnemy;
+            battlePage.PastLocationX = PastLocationX;
+            battlePage.PastLocationY = PastLocationY;
             this.Hide();
             battlePage.ShowDialog();
             this.Close();
         }
-        #region new Enemy
-        private void NewEnemy()
+        #region  Enemy appear
+        private void EnemyAppear()
         {
             foreach (Control item in groupBox1.Controls)
             {
@@ -106,14 +112,29 @@ namespace RandomGame
             Random randomLocation = new Random();
             int x1;
             int y1;
-            
-            Button BT = new Button()
+
+            Button BT = new Button();
+            BT.Size = new Size(110, 34);// Make sure the size is big enough
+
+            // If there are no current enemy, Just show there is an enemy
+            //otherwise show enemy HP
+            if (enemyAlive ==false)
             {
-                Text = "Your enemy"
-               
-            };
-            x1 = randomLocation.Next(groupBox1.Size.Width-BT.Width);
-            y1 = randomLocation.Next(groupBox1.Size.Height-BT.Height);
+                BT.Text = "Your enemy";
+                x1 = randomLocation.Next(groupBox1.Size.Width - BT.Width);
+                y1 = randomLocation.Next(groupBox1.Size.Height - BT.Height);
+                PastLocationX = x1;
+                PastLocationY = y1;
+            }
+            else
+            {
+                BT.Text = CurrentEnemy.Name + "  HP :" + CurrentEnemy.HP;
+                x1 = PastLocationX;
+                y1 = PastLocationY;
+            }
+
+            
+           
             BT.Location = new Point(x1, y1);
             BT.Click += button1_Click;
             groupBox1.Controls.Add(BT);
