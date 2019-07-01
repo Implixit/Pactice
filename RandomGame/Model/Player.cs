@@ -21,8 +21,9 @@ namespace RandomGame.Model
                 return Level * 10;
             }
 
-            
+
 
         }
+        public int PotionAmount { get; set; }
     }
 }

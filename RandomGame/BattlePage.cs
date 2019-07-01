@@ -16,6 +16,7 @@ namespace RandomGame
         public Player CurrentPlay { get; set; }
         public Battle CurrentEnemy { get; set; }
         public bool enemyAlive { get; set; }
+        
 
         //store location for enemy 
         public int PastLocationX { get; set; }
@@ -50,14 +51,22 @@ namespace RandomGame
 
         private void BattlePage_Shown(object sender, EventArgs e)
         {
-
+            
 
             Enemyhp = BattleFunction(CurrentEnemy, CurrentPlay);
             if (Enemyhp <= 0 )
             {
+                int chance;
                 MessageBox.Show("Enemy die");
                 ExpCalucation(CurrentEnemy, CurrentPlay);
                 enemyAlive = false;
+                Random GetPotion = new Random();
+                chance = GetPotion.Next(1, 10);
+                if (chance >=6)
+                {
+                    MessageBox.Show("You get a Potion.");
+                    CurrentPlay.PotionAmount += 1;
+                }
 
             }
             else

@@ -29,7 +29,8 @@ namespace RandomGame
             //information in the page 
             HPpoint.Text = CurrentPlay.HP.ToString();
             AttackPoint.Text = CurrentPlay.AttackPoint.ToString();
-            DefensePoint.Text = CurrentPlay.DefensePoint.ToString();
+            DefensePoint.Text = CurrentPlay.DefensePoint.ToString();            
+            PotionAmount.Text = CurrentPlay.PotionAmount.ToString();
             EnemyAppear();
 
             if (CurrentEnemy ==null)
@@ -157,6 +158,26 @@ namespace RandomGame
             
         }
 
+        private void UsePotion_Click(object sender, EventArgs e)
+        {
+            if (CurrentPlay.PotionAmount <= 0)
+            {
+                MessageBox.Show("You don't have any potion!");
+                
+            }
+            else
+            {
+                int healHp;
+                Random heal = new Random();
+                healHp = heal.Next(10, 20);
+                CurrentPlay.HP += healHp;
+                CurrentPlay.PotionAmount -= 1;
+                MessageBox.Show("You heal" + healHp + "HP!");
 
+                HPpoint.Text = CurrentPlay.HP.ToString();
+                PotionAmount.Text = CurrentPlay.PotionAmount.ToString();
+            }
+            
+        }
     }
 }
